@@ -9,4 +9,5 @@ export type ToastPositionProps =
 export type ToastContainerProps = {
   theme?: "light" | "dark";
   position?: ToastPositionProps;
+  duration?: number;
 };

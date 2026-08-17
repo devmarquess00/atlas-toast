@@ -1,50 +1,29 @@
-import React from "react";
+import React from "react"
 import "../styles/toast.css";
-import { useToastStore } from "../stores/useToastStore";
-import { LuCheck, LuInfo, LuTriangleAlert, LuX } from "react-icons/lu";
+import { Toast } from "./Toast";
 import type { ToastContainerProps } from "../types";
+import { useToastStore } from "../stores/useToastStore";
 
 export const ToastContainer: React.FC<ToastContainerProps> = ({
   theme = "light",
   position = "bottom-right",
+  duration = 3000
 }) => {
   const toasts = useToastStore((state) => state.toasts);
   const hideToast = useToastStore((state) => state.removeToast);
-
-  const icons = {
-    success: <LuCheck />,
-    warning: <LuTriangleAlert />,
-    error: <LuX />,
-    info: <LuInfo />,
-  };
+  const setToastIsExisting = useToastStore((state) => state.setToastIsExisting)
 
   return (
     <div className="toast-container" data-position={position}>
       {toasts.map((toast) => (
-        <div
-          key={toast.id}
-          className={`toast toast-${toast.type} ${
-            toast.isExisting ? "is-existing" : ""
-          }`}
-          data-theme={theme}
-        >
-          <div className="toast-icon">{icons[toast.type]}</div>
-
-          <div className="content">
-            <span className="content-title">{toast.title}</span>
-
-            <span className="content-description">{toast.description}</span>
-          </div>
-
-          <button
-            type="button"
-            className="toast-close"
-            aria-label="Close notification"
-            onClick={() => hideToast(toast.id)}
-          >
-            <LuX />
-          </button>
-        </div>
+        <Toast
+        toast={toast}
+        theme={theme}
+        key={toast.id}
+        duration={duration}
+        hideToast={hideToast}
+        setToastIsExisting={setToastIsExisting}
+        />
       ))}
     </div>
   );

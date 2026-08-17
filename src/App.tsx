@@ -2,7 +2,7 @@ import { toast } from "./lib/toast"
 
 function App() { 
   const onToast = () => {
-    toast.success('Usuário criado', 'Seu usuário foi criado com sucesso no sistema!')
+    toast.info('Usuário criado', 'Seu usuário foi criado com sucesso no sistema!')
   }
 
   return (

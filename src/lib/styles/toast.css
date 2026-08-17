@@ -245,7 +245,7 @@
 
   font-size: 14px;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 14px;
 }
 
 .toast-close {
@@ -300,10 +300,15 @@
 
   .toast {
     width: auto;
-    min-height: 82px;
   }
+}
 
-  .content {
-    max-width: none;
-  }
+.toast .timing {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  position: absolute;
+  background-color: var(--toast-color);
+  transition: width 50ms linear;
 }

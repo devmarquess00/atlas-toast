@@ -1,17 +1,22 @@
 import { create } from "zustand";
 
-export interface Toast {
+export interface ToastStoreProps {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   isExisting: boolean;
   type: "success" | "error" | "warning" | "info";
 }
 
 interface ToastStore {
-  toasts: Toast[];
-  addToast: (title: string, description: string, type?: Toast["type"]) => void;
+  toasts: ToastStoreProps[];
+  addToast: (
+    title: string,
+    description: string,
+    type?: ToastStoreProps["type"],
+  ) => void;
   removeToast: (id: string) => void;
+  setToastIsExisting: (id: string) => void;
 }
 
 export const useToastStore = create<ToastStore>((set) => ({
@@ -24,20 +29,14 @@ export const useToastStore = create<ToastStore>((set) => ({
         { id, title, description, type, isExisting: false },
       ],
     }));
+  },
 
-    setTimeout(() => {
-      set((state) => ({
-        toasts: state.toasts.map((toast) =>
-          toast.id === id ? { ...toast, isExisting: true } : toast,
-        ),
-      }));
-
-      setTimeout(() => {
-        set((state) => ({
-          toasts: state.toasts.filter((t) => t.id !== id),
-        }));
-      }, 300);
-    }, 3000);
+  setToastIsExisting(id) {
+    set((state) => ({
+      toasts: state.toasts.map((toast) =>
+        toast.id === id ? { ...toast, isExisting: true } : toast,
+      ),
+    }));
   },
 
   removeToast: (id) =>
