@@ -21,9 +21,16 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react-icons",
+        /^react-icons\/.*/,
+        "zustand",
+      ],
       output: {
-        banner: '"use-client";',
+        banner: '"use client";', // Corrigido sem o hífen
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
