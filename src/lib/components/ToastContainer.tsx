@@ -5,7 +5,7 @@ import type { ToastContainerProps } from "../types";
 import { useToastStore } from "../stores/useToastStore";
 
 export const ToastContainer: React.FC<ToastContainerProps> = ({
-  theme = "light",
+  theme = "dark",
   position = "bottom-right",
   duration = 3000
 }) => {
