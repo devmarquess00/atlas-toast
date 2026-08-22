@@ -1,6 +1,12 @@
-import { LuCheck, LuInfo, LuTriangleAlert, LuX } from "react-icons/lu";
+import {
+  LuCheck,
+  LuInfo,
+  LuLoaderCircle,
+  LuTriangleAlert,
+  LuX,
+} from "react-icons/lu";
 import { useEffect, useRef, useState } from "react";
-import type { ToastStoreProps } from "../stores/useToastStore";
+import { type ToastStoreProps } from "../stores/useToastStore";
 
 export type ToastProps = {
   duration: number;
@@ -22,13 +28,12 @@ export const Toast = ({
   const [translateX, setTranslateX] = useState(0);
   const [timing, setTiming] = useState(100);
   const [isDragging, setIsDragging] = useState(false);
+  const DESKTOP_DISMISS_THRESHOLD = 240;
 
   const startX = useRef(0);
   const isDraggingRef = useRef(false);
 
-  const handlePointerDown = (
-    event: React.PointerEvent<HTMLDivElement>,
-  ) => {
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     startX.current = event.clientX;
 
     isDraggingRef.current = true;
@@ -37,39 +42,61 @@ export const Toast = ({
     event.currentTarget.setPointerCapture(event.pointerId);
   };
 
-  const handlePointerMove = (
-    event: React.PointerEvent<HTMLDivElement>,
-  ) => {
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!isDraggingRef.current) return;
 
     const deltaX = event.clientX - startX.current;
 
     setTranslateX(deltaX);
 
-    const rect = event.currentTarget.getBoundingClientRect();
+    const isMobile = window.innerWidth <= 640;
 
-    const isOutRight = rect.left >= window.innerWidth;
-    const isOutLeft = rect.right <= 0;
+    if (isMobile) {
+      const rect = event.currentTarget.getBoundingClientRect();
 
-    if (isOutRight || isOutLeft) {
+      const isOutRight = rect.left >= window.innerWidth;
+      const isOutLeft = rect.right <= 0;
+
+      if (isOutRight || isOutLeft) {
+        hideToast(toast.id);
+      }
+
+      return;
+    }
+
+    const reachedThreshold = Math.abs(deltaX) >= DESKTOP_DISMISS_THRESHOLD;
+
+    if (reachedThreshold) {
       hideToast(toast.id);
     }
   };
 
-  const handlePointerUp = (
-    event: React.PointerEvent<HTMLDivElement>,
-  ) => {
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!isDraggingRef.current) return;
 
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    const isOutRight = rect.left >= window.innerWidth;
-    const isOutLeft = rect.right <= 0;
+    const isMobile = window.innerWidth <= 640;
 
     isDraggingRef.current = false;
     setIsDragging(false);
 
-    if (isOutRight || isOutLeft) {
+    if (isMobile) {
+      const rect = event.currentTarget.getBoundingClientRect();
+
+      const isOutRight = rect.left >= window.innerWidth;
+      const isOutLeft = rect.right <= 0;
+
+      if (isOutRight || isOutLeft) {
+        hideToast(toast.id);
+        return;
+      }
+
+      setTranslateX(0);
+      return;
+    }
+
+    const reachedThreshold = Math.abs(translateX) >= DESKTOP_DISMISS_THRESHOLD;
+
+    if (reachedThreshold) {
       hideToast(toast.id);
       return;
     }
@@ -78,6 +105,7 @@ export const Toast = ({
   };
 
   useEffect(() => {
+    if (toast.statusToast === "pending") return;
     const interval = setInterval(() => {
       if (isDraggingRef.current) return;
 
@@ -92,7 +120,7 @@ export const Toast = ({
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, [toast.id, intervalTime]);
+  }, [toast.id, toast.statusToast, intervalTime]);
 
   useEffect(() => {
     if (timing !== 0) return;
@@ -117,52 +145,64 @@ export const Toast = ({
     info: <LuInfo />,
   };
 
+  const promiseIcons = {
+    pending: (
+      <span className="toast-icon-promise">
+        <LuLoaderCircle />
+      </span>
+    ),
+    resolved: <LuCheck />,
+    error: <LuX />,
+  };
+
   return (
     <div
       className={`toast toast-${toast.type} ${
         toast.isExisting ? "is-existing" : ""
       }`}
       data-theme={theme}
+      data-status={toast.statusToast}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
       style={{
         transform: `translateX(${translateX}px)`,
-        transition: isDragging
-          ? "none"
-          : "transform 0.2s ease",
+        transition: isDragging ? "none" : "transform 0.2s ease",
       }}
     >
       <div className="toast-icon">
-        {icons[toast.type]}
+        {toast.type === "promise"
+          ? promiseIcons[toast.statusToast ?? "pending"]
+          : icons[toast.type]}
       </div>
 
       <div className="content">
-        <span className="content-title">
-          {toast.title}
-        </span>
+        <span className="content-title">{toast.title}</span>
 
-        <span className="content-description">
-          {toast.description}
-        </span>
+        <span className="content-description">{toast.description}</span>
       </div>
 
       <button
         type="button"
         className="toast-close"
         aria-label="Close notification"
+        onPointerDown={(event) => {
+          event.stopPropagation();
+        }}
         onClick={() => hideToast(toast.id)}
       >
         <LuX />
       </button>
 
-      <div
-        className="timing"
-        style={{
-          width: `${timing}%`,
-        }}
-      />
+      {toast.statusToast !== "pending" && (
+        <div
+          className="timing"
+          style={{
+            width: `${timing}%`,
+          }}
+        />
+      )}
     </div>
   );
 };

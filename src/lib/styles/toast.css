@@ -127,6 +127,7 @@
   border-radius: 16px;
   background: var(--toast-background);
   color: var(--toast-text);
+  cursor: grab;
 
   box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.04),
@@ -199,6 +200,18 @@
   --toast-border-color: #4840cb39;
 }
 
+.toast-promise[data-status="pending"] {
+  --toast-color: #71717a;
+}
+
+.toast-promise[data-status="resolved"] {
+  --toast-color: #10b981;
+}
+
+.toast-promise[data-status="error"] {
+  --toast-color: #ef4444;
+}
+
 .toast-icon {
   position: relative;
   z-index: 1;
@@ -213,6 +226,23 @@
   font-size: 26px;
 }
 
+.toast-icon-promise {
+  animation: toast-promise-spin 1s linear infinite;
+}
+
+.toast-icon-promise svg {
+  display: block;
+}
+
+@keyframes toast-promise-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
 .toast[data-theme="light"] .toast-icon {
   background: color-mix(in srgb, var(--toast-color) 10%, transparent);
 }

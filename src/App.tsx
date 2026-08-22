@@ -1,17 +1,9 @@
-import { toast } from "./lib/toast"
-
-function App() { 
-  const onToast = () => {
-    toast.info('Usuário criado', 'Seu usuário foi criado com sucesso no sistema!')
-  }
-
+function App() {
   return (
     <div>
       <p>Atlas Toast</p>
-
-      <button onClick={onToast}>onToast</button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
