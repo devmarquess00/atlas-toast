@@ -1,0 +1,96 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Docs/Introduction" />
+
+<h1>Atlas Toast 🤺</h1>
+
+<div style={{ marginTop: '1rem' }}>Bem-vindo à documentação oficial do **Atlas Toast**! Esta é uma biblioteca leve, acessível e altamente customizável de notificações no formato Toast para aplicações React. Tendo suporte a diversos tipos de Toasts para você usar na sua aplicação.</div>
+
+<div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
+    <h3>🎨 Recursos Principais</h3>
+</div>
+
+<hr />
+
+- **Múltiplos tipos de toast:** (`success`, `error`, `warning`, `info`, `promise`).
+- **Posicionamento flexível:** (`top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right`).
+- **Gestos de Arrastar (Drag to Dismiss):** Suporte nativo a ponteiros touch e mouse para fechar deslizando.
+- **Suporte para fechamento:** Você define o tempo de duração do toast na tela.
+- **Suporte a Temas:** Alternância nativa entre temas `light` e `dark`.
+- **Totalmente Tipado:** Desenvolvido em TypeScript do zero.
+
+<div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
+    <h3>🚀 Uso básico</h3>
+</div>
+
+<hr />
+
+<span style={{ fontWeight: '900' }}>Exemplo 1: Toast básico de Sucesso</span>
+```tsx 
+import { ToastContainer, toast } from 'toast-altas'
+
+function App() {
+    const onShowToast = () => {
+        toast.success('Toast de sucesso', 'Descriçao do toast de sucesso')
+    }
+
+    return (
+        <div>
+            <button onClick={onShowToast}>Show Toast Success</button>
+            <ToastContainer
+            theme='dark'
+            position='bottom-right'
+            />
+        </div>
+    )
+}
+
+export default App;
+```
+
+<span style={{ fontWeight: '900' }}>Exemplo 2: Toast de Promise</span>
+```tsx 
+import { ToastContainer, toast } from 'toast-altas'
+
+function App() {
+    const fetchData = () => {
+        const response = await fetch('api_url_aqui')
+        const data = response.json()
+    }
+
+    const onShowToast = () => {
+        toast.promise(fetchData(), {
+            pendingTitle: 'Carregando...',
+            pendingDescription: 'Descrição carregando',
+            resolvedTitle: 'Resolvido',
+            resolvedDescription: 'Descrição resolvida',
+        },
+        )
+    }
+
+    return (
+        <div>
+            <button onClick={onShowToast}>Show Toast Success</button>
+            <ToastContainer
+            theme='dark'
+            position='bottom-right'
+            />
+        </div>
+    )
+}
+
+export default App;
+```
+
+{/* ## 📦 Começando Rapidamente
+
+### 1. Instalação
+
+Adicione o pacote ao seu projeto via gerenciador de dependências:
+
+```bash
+npm install atlas-toast
+# ou
+pnpm add atlas-toast
+# ou
+yarn add atlas-toast */}

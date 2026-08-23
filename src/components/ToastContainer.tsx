@@ -6,7 +6,7 @@ import { useToastStore } from "../stores/useToastStore";
 
 export const ToastContainer: React.FC<ToastContainerProps> = ({
   duration = 3000,
-  theme = "light",
+  theme = "dark",
   position = "bottom-right",
 }) => {
   const toasts = useToastStore((state) => state.toasts);
