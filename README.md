@@ -36,8 +36,39 @@ const App () {
 
   return (
     <div>
-      <button onClick={showToastSuccess}>Mostrar Toast</button>
+      <button onClick={showToastSuccess}>Mostrar Toast Success</button>
     </div>
   )
 }
+
+export default App
+```
+#### Exemplo 2 - Toast de Promise
+
+```tsx
+import { toast } from 'atlas-toast'
+
+const App() {
+  const fetchData = async () => {
+    const response = await fetch('url')
+    const data = response.json()
+  }
+
+const showToastPromise = () => {
+  toast.promise(fetchData, {
+    pendingTitle: "Carregando...",
+    pendingDescription: "Descrição carregando",
+    resolvedTitle: "Chamada concluída",
+    resolvedDescription: "Descrição chamada concluída"
+  })
+  }
+
+  return (
+    <div>
+      <button onClick={showToastPromise}>Mostrat Toast Promise</button>
+    </div>
+  )
+}
+
+export default App
 ```
