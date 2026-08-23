@@ -1,14 +1,7 @@
 import { LuX } from "react-icons/lu";
 import { useToast } from "../hooks/useToast";
-import { type ToastStoreProps } from "../stores/useToastStore";
 import { iconsToastNormal, iconsToastPromise } from "../constants";
-
-export type ToastProps = {
-  duration: number;
-  toast: ToastStoreProps;
-  theme: "light" | "dark";
-  hideToast: (id: string) => void;
-};
+import { ToastProps } from "../types";
 
 export const Toast = ({ toast, theme, duration, hideToast }: ToastProps) => {
   const {

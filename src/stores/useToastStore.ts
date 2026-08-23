@@ -1,13 +1,5 @@
 import { create } from "zustand";
-
-export interface ToastStoreProps {
-  id: string;
-  title: string;
-  description?: string;
-  isExisting: boolean;
-  statusToast?: "pending" | "resolved" | "error";
-  type: "success" | "error" | "warning" | "info" | "promise";
-}
+import { ToastStoreProps } from "../types";
 
 interface ToastStore {
   toasts: ToastStoreProps[];
@@ -15,22 +7,27 @@ interface ToastStore {
     title: string,
     description?: string,
     type?: ToastStoreProps["type"],
-    statusToast?: ToastStoreProps['statusToast'],
+    statusToast?: ToastStoreProps["statusToast"],
   ) => string;
   updatedToast: (
     id: string,
-    title: string, 
-    description: string, 
+    title: string,
+    description: string,
     type?: ToastStoreProps["type"],
-    statusToast?: ToastStoreProps['statusToast'],
-  ) => void,
+    statusToast?: ToastStoreProps["statusToast"],
+  ) => void;
   removeToast: (id: string) => void;
   setToastIsExisting: (id: string) => void;
 }
 
 export const useToastStore = create<ToastStore>((set) => ({
   toasts: [],
-  addToast: (title, description, type = "warning", statusToast = 'resolved') => {
+  addToast: (
+    title,
+    description,
+    type = "warning",
+    statusToast = "resolved",
+  ) => {
     const id = Math.random().toString(36).substring(2, 9);
     const creatingToast =
       type === "promise"
@@ -68,10 +65,14 @@ export const useToastStore = create<ToastStore>((set) => ({
     return id;
   },
 
-  updatedToast: (id, title, description, type = 'promise', statusToast) => {
+  updatedToast: (id, title, description, type = "promise", statusToast) => {
     set((state) => ({
-      toasts: state.toasts.map((toast) => toast.id === id ? { ...toast, title, description, type, statusToast } : toast)
-    }))
+      toasts: state.toasts.map((toast) =>
+        toast.id === id
+          ? { ...toast, title, description, type, statusToast }
+          : toast,
+      ),
+    }));
   },
 
   setToastIsExisting(id) {
@@ -83,9 +84,9 @@ export const useToastStore = create<ToastStore>((set) => ({
   },
 
   removeToast: (id) => {
-    console.log('chegou aqui')
+    console.log("chegou aqui");
     return set((state) => ({
       toasts: state.toasts.filter((t) => t.id !== id),
-    }))
-  }
+    }));
+  },
 }));
