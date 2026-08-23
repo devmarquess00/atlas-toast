@@ -4,10 +4,15 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <h1>Atlas Toast 🤺</h1>
 
-<div style={{ marginTop: '1rem' }}>Bem-vindo à documentação oficial do **Atlas Toast**! Esta é uma biblioteca leve, acessível e altamente customizável de notificações no formato Toast para aplicações React. Tendo suporte a diversos tipos de Toasts para você usar na sua aplicação.</div>
+<div style={{ marginTop: "1rem" }}>
+  Bem-vindo à documentação oficial do **Atlas Toast**! Esta é uma biblioteca
+  leve, acessível e altamente customizável de notificações no formato Toast para
+  aplicações React. Tendo suporte a diversos tipos de Toasts para você usar na
+  sua aplicação.
+</div>
 
-<div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
-    <h3>🎨 Recursos Principais</h3>
+<div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
+  <h3>🎨 Recursos Principais</h3>
 </div>
 
 <hr />
@@ -19,8 +24,8 @@ import { Meta } from "@storybook/addon-docs/blocks";
 - **Suporte a Temas:** Alternância nativa entre temas `light` e `dark`.
 - **Totalmente Tipado:** Desenvolvido em TypeScript do zero.
 
-<div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
-    <h3>🚀 Uso básico</h3>
+<div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
+  <h3>🚀 Uso básico</h3>
 </div>
 
 <hr />
@@ -30,9 +35,9 @@ import { Meta } from "@storybook/addon-docs/blocks";
 import { ToastContainer, toast } from 'toast-altas'
 
 function App() {
-    const onShowToast = () => {
-        toast.success('Toast de sucesso', 'Descriçao do toast de sucesso')
-    }
+const onShowToast = () => {
+toast.success('Toast de sucesso', 'Descriçao do toast de sucesso')
+}
 
     return (
         <div>
@@ -43,6 +48,7 @@ function App() {
             />
         </div>
     )
+
 }
 
 export default App;
@@ -53,10 +59,10 @@ export default App;
 import { ToastContainer, toast } from 'toast-altas'
 
 function App() {
-    const fetchData = () => {
-        const response = await fetch('api_url_aqui')
-        const data = response.json()
-    }
+const fetchData = async () => {
+const response = await fetch('api_url_aqui')
+const data = response.json()
+}
 
     const onShowToast = () => {
         toast.promise(fetchData(), {
@@ -77,20 +83,35 @@ function App() {
             />
         </div>
     )
+
 }
 
 export default App;
 ```
 
-{/* ## 📦 Começando Rapidamente
+<div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
+  <h3>📢 Funções de Toast</h3>
+</div>
 
-### 1. Instalação
+<hr />
+```tsx
+// success 
+toast.success("Toast sucesso", "Descrição sucesso"); 
+// info 
+toast.info("Toast info", "Descrição info");
+// warning 
+toast.warning("Toast warning", "Descrição warning");
+// error 
+toast.error("Toast error", "Descrição error");
+```
 
-Adicione o pacote ao seu projeto via gerenciador de dependências:
+<div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
+  <h3>👤 Autor</h3>
+</div>
 
-```bash
-npm install atlas-toast
-# ou
-pnpm add atlas-toast
-# ou
-yarn add atlas-toast */}
+<hr />
+
+<span>
+  João Lucas Marques{" "}
+  <a href="https://github.com/devmarquess00">@devmarquess00 </a>
+</span>
