@@ -11,9 +11,8 @@ import { Meta } from "@storybook/addon-docs/blocks";
   sua aplicação.
 </div>
 
-<div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
-  <h3>🎨 Recursos Principais</h3>
-</div>
+<br />
+### 🎨 Recursos Principais
 
 <hr />
 
@@ -24,94 +23,82 @@ import { Meta } from "@storybook/addon-docs/blocks";
 - **Suporte a Temas:** Alternância nativa entre temas `light` e `dark`.
 - **Totalmente Tipado:** Desenvolvido em TypeScript do zero.
 
-<div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
-  <h3>🚀 Uso básico</h3>
-</div>
+<br />
+### 🚀 Uso básico
 
 <hr />
 
-<span style={{ fontWeight: '900' }}>Exemplo 1: Toast básico de Sucesso</span>
-```tsx 
-import { ToastContainer, toast } from 'toast-altas'
+#### Exemplo 1: Toast básico de Sucesso
 
-function App() {
-const onShowToast = () => {
-toast.success('Toast de sucesso', 'Descriçao do toast de sucesso')
-}
-
-    return (
-        <div>
-            <button onClick={onShowToast}>Show Toast Success</button>
-            <ToastContainer
-            theme='dark'
-            position='bottom-right'
-            />
-        </div>
-    )
-
-}
-
-export default App;
-```
-
-<span style={{ fontWeight: '900' }}>Exemplo 2: Toast de Promise</span>
-```tsx 
-import { ToastContainer, toast } from 'toast-altas'
-
-function App() {
-const fetchData = async () => {
-const response = await fetch('api_url_aqui')
-const data = response.json()
-}
-
-    const onShowToast = () => {
-        toast.promise(fetchData(), {
-            pendingTitle: 'Carregando...',
-            pendingDescription: 'Descrição carregando',
-            resolvedTitle: 'Resolvido',
-            resolvedDescription: 'Descrição resolvida',
-        },
-        )
-    }
-
-    return (
-        <div>
-            <button onClick={onShowToast}>Show Toast Success</button>
-            <ToastContainer
-            theme='dark'
-            position='bottom-right'
-            />
-        </div>
-    )
-
-}
-
-export default App;
-```
-
-<div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
-  <h3>📢 Funções de Toast</h3>
-</div>
-
-<hr />
 ```tsx
-// success 
-toast.success("Toast sucesso", "Descrição sucesso"); 
-// info 
-toast.info("Toast info", "Descrição info");
-// warning 
-toast.warning("Toast warning", "Descrição warning");
-// error 
-toast.error("Toast error", "Descrição error");
+import { ToastContainer, toast } from "toast-altas";
+
+function App() {
+  const onShowToast = () => {
+    toast.success("Toast de sucesso", "Descriçao do toast de sucesso");
+  };
+
+  return (
+    <div>
+      <button onClick={onShowToast}>Show Toast Success</button>
+      <ToastContainer theme="dark" position="bottom-right" />
+    </div>
+  );
+}
+
+export default App;
 ```
 
-<div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
-  <h3>👤 Autor</h3>
-</div>
+#### Exemplo 2: Toast de Promise
+
+```tsx
+import { ToastContainer, toast } from "toast-altas";
+
+function App() {
+  const fetchData = async () => {
+    const response = await fetch("api_url_aqui");
+    const data = response.json();
+  };
+
+  const onShowToast = () => {
+    toast.promise(fetchData(), {
+      pendingTitle: "Carregando...",
+      pendingDescription: "Descrição carregando",
+      resolvedTitle: "Resolvido",
+      resolvedDescription: "Descrição resolvida",
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={onShowToast}>Show Toast Success</button>
+      <ToastContainer theme="dark" position="bottom-right" />
+    </div>
+  );
+}
+
+export default App;
+```
+
+### 📢 Funções de Toast
 
 <hr />
 
-<span>
-  João Lucas Marques{" "}
-  <a href="https://github.com/devmarquess00">@devmarquess00 </a>
-</span>
+```bash
+# success
+toast.success("Toast sucesso", "Descrição toast sucesso");
+
+# info
+toast.info("Toast info", "Descrição toast info");
+
+# warning
+toast.warning("Toast warning", "Descrição toast warning");
+
+# error
+toast.error("Toast error", "Descrição toast error");
+```
+
+### 👤 Autor
+
+<hr />
+João Lucas Marques [devmarques00](https://github.com/devmarquess00)
