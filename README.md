@@ -22,3 +22,22 @@ pnpm add atlas-toast
 - Suporte para fechamento: Você define o tempo de duração do toast na tela.
 - Suporte a Temas: Alternância nativa entre temas `light` e `dark`.
 - Totalmente Tipado: Criado do zero com TypeScript
+
+## 🚩 Uso básico 
+#### Exemplo 1 - Toast de Sucesso
+
+```tsx
+import { toast } from 'atlas-toast'
+
+const App () {
+  const showToastSuccess = () => {
+    toast.success("Toast de sucesso", "Descrição toast de sucesso"
+  }
+
+  return (
+    <div>
+      <button onClick={showToastSuccess}>Mostrar Toast</button>
+    </div>
+  )
+}
+```
