@@ -3,7 +3,14 @@ import { useToast } from "../hooks/useToast";
 import { iconsToastNormal, iconsToastPromise } from "../constants";
 import { ToastProps } from "../types";
 
-export const Toast = ({ toast, theme, duration, hideToast }: ToastProps) => {
+export const Toast = ({
+  toast,
+  theme,
+  duration,
+  hideToast,
+  closeOnClick,
+  draggable,
+}: ToastProps) => {
   const {
     timing,
     isDragging,
@@ -20,10 +27,11 @@ export const Toast = ({ toast, theme, duration, hideToast }: ToastProps) => {
       }`}
       data-theme={theme}
       data-status={toast.statusToast}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
+      data-draggable={draggable}
+      onPointerDown={draggable ? handlePointerDown : undefined}
+      onPointerMove={draggable ? handlePointerMove : undefined}
+      onPointerUp={draggable ? handlePointerUp : undefined}
+      onPointerCancel={draggable ? handlePointerUp : undefined}
       style={{
         transform: `translateX(${translateX}px)`,
         transition: isDragging ? "none" : "transform 0.2s ease",
@@ -41,17 +49,19 @@ export const Toast = ({ toast, theme, duration, hideToast }: ToastProps) => {
         <span className="content-description">{toast.description}</span>
       </div>
 
-      <button
-        type="button"
-        className="toast-close"
-        aria-label="Close notification"
-        onPointerDown={(event) => {
-          event.stopPropagation();
-        }}
-        onClick={() => hideToast(toast.id)}
-      >
-        <LuX />
-      </button>
+      {closeOnClick && (
+        <button
+          type="button"
+          className="toast-close"
+          aria-label="Close notification"
+          onPointerDown={(event) => {
+            event.stopPropagation();
+          }}
+          onClick={() => hideToast(toast.id)}
+        >
+          <LuX />
+        </button>
+      )}
 
       {toast.statusToast !== "pending" && (
         <div

@@ -8,6 +8,8 @@ export const ToastContainer: React.FC<ToastContainerProps> = ({
   duration = 3000,
   theme = "dark",
   position = "bottom-right",
+  draggable = false, 
+  closeOnClick = true,
 }) => {
   const toasts = useToastStore((state) => state.toasts);
   const hideToast = useToastStore((state) => state.removeToast);
@@ -20,7 +22,9 @@ export const ToastContainer: React.FC<ToastContainerProps> = ({
           theme={theme}
           key={toast.id}
           duration={duration}
+          draggable={draggable}
           hideToast={hideToast}
+          closeOnClick={closeOnClick}
         />
       ))}
     </div>

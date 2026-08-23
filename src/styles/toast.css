@@ -127,11 +127,14 @@
   border-radius: 16px;
   background: var(--toast-background);
   color: var(--toast-text);
-  cursor: grab;
 
   box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.04),
     0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.toast[data-draggable="true"] {
+  cursor: grab;
 }
 
 .toast[data-theme="light"]::after {

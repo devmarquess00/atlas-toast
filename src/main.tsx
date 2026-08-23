@@ -6,6 +6,7 @@ import { ToastContainer } from "./components/ToastContainer.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
-    <ToastContainer />
+    <ToastContainer
+    />
   </StrictMode>,
 );

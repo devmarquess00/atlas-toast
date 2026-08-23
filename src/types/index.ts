@@ -10,6 +10,8 @@ export type ToastContainerProps = {
   theme?: "light" | "dark";
   position?: ToastPositionProps;
   duration?: number;
+  draggable?: boolean
+  closeOnClick?: boolean
 };
 
 export interface ToastStoreProps {
@@ -23,6 +25,8 @@ export interface ToastStoreProps {
 
 export type ToastProps = {
   duration: number;
+  draggable?: boolean
+  closeOnClick?: boolean;
   toast: ToastStoreProps;
   theme: "light" | "dark";
   hideToast: (id: string) => void;
