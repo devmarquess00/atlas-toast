@@ -1,0 +1,78 @@
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import * as ToastStories from "./toast.stories";
+
+<Meta of={ToastStories} />
+
+# Toast
+
+O componente **Toast** é utilizado para exibir mensagens temporárias de feedback para o usuário, contendo algumas variantes, sendo elas: (success, warning, info, error e promise).
+
+<hr />
+
+<br />
+
+### 🟢 Toast de Sucesso
+
+##### - Código de exemplo:
+
+```tsx
+import { toast } from "atlas-toast";
+
+const onShowSuccessToast = () => {
+  toast.success("Toast de sucesso");
+};
+
+<button onClick={onShowSuccessToast}>Show Toast</button>;
+```
+
+##### - Exibição em tela
+
+<Canvas of={ToastStories.ToastSuccess} />
+
+### 🟡 Toast de Alerta
+
+##### - Código de exemplo:
+
+```tsx
+import { toast } from "atlas-toast";
+
+const onShowWarningToast = () => {
+  toast.warning("Toast de alerta");
+};
+
+<button onClick={onShowWarningToast}>Show Toast</button>;
+```
+
+<Canvas of={ToastStories.ToastWarning} />
+
+### 🟣 Toast de Informação
+
+##### - Código de exemplo:
+
+```tsx
+import { toast } from "atlas-toast";
+
+const onShowInfoToast = () => {
+  toast.info("Toast de info");
+};
+
+<button onClick={onShowInfoToast}>Show Toast</button>;
+```
+
+<Canvas of={ToastStories.ToastInfo} />
+
+### 🔴 Toast de Erro
+
+##### - Código de exemplo:
+
+```tsx
+import { toast } from "atlas-toast";
+
+const onShowErrorToast = () => {
+  toast.error("Toast de erro");
+};
+
+<button onClick={onShowErrorToast}>Show Toast</button>;
+```
+
+<Canvas of={ToastStories.ToastError} />
