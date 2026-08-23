@@ -13,7 +13,7 @@ interface ToastStore {
   toasts: ToastStoreProps[];
   addToast: (
     title: string,
-    description: string,
+    description?: string,
     type?: ToastStoreProps["type"],
     statusToast?: ToastStoreProps['statusToast'],
   ) => string;

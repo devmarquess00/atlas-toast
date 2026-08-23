@@ -9,13 +9,13 @@ export default defineConfig({
     dts({
       tsconfigPath: "./tsconfig.app.json",
       insertTypesEntry: true,
-      include: ["src/lib"],
-      entryRoot: "src/lib",
+      include: ["src/"],
+      entryRoot: "src/",
     }),
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, "src/lib/index.ts"),
+      entry: resolve(__dirname, "src/index.ts"),
       name: "AtlasToast",
       fileName: (format) => `index.${format === "es" ? "js" : "cjs"}`,
       formats: ["es", "cjs"],

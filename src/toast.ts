@@ -1,13 +1,13 @@
 import { useToastStore } from "./stores/useToastStore";
 
 export const toast = {
-  success: (title: string, description: string) =>
+  success: (title: string, description?: string) =>
     useToastStore.getState().addToast(title, description, "success"),
-  error: (title: string, description: string) =>
+  error: (title: string, description?: string) =>
     useToastStore.getState().addToast(title, description, "error"),
-  warning: (title: string, description: string) =>
+  warning: (title: string, description?: string) =>
     useToastStore.getState().addToast(title, description, "warning"),
-  info: (title: string, description: string) =>
+  info: (title: string, description?: string) =>
     useToastStore.getState().addToast(title, description, "info"),
   promise: async <T>(
     data: () => Promise<T>,
