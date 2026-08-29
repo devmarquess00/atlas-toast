@@ -1,4 +1,4 @@
-import { toast } from "../../../../src/toast";
+import { toast } from "atlas-toast";
 import { LuCopy } from "react-icons/lu";
 import { VARIANTS } from "../../constants/variants";
 

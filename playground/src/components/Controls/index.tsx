@@ -1,8 +1,8 @@
 import { useId } from "react";
 import type { ReactNode } from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
-import { toast } from "../../../../src/toast";
-import type { ToastContainerProps, ToastPositionProps } from "../../../../src";
+import { toast } from "atlas-toast";
+import type { ToastContainerProps, ToastPositionProps } from "atlas-toast";
 
 type ControlsProps = {
   settings: ToastContainerProps;

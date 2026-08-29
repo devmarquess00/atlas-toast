@@ -1,7 +1,7 @@
 import { Header } from "../Header";
 import { Variants } from "../Variants";
 import { Controls } from "../Controls";
-import type { ToastContainerProps } from "../../../../src";
+import type { ToastContainerProps } from "atlas-toast";
 
 type ContainerProps = {
   settings: ToastContainerProps;

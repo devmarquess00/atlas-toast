@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Container } from "./components/Container";
-import { ToastContainer } from "../../src";
-import type { ToastContainerProps } from "../../src";
+import { ToastContainer } from "atlas-toast";
+import type { ToastContainerProps } from "atlas-toast";
 
 function App() {
   const [settings, setSettings] = useState<ToastContainerProps>({
