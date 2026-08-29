@@ -56,12 +56,12 @@ O `ToastContainer` aceita props para controlar o comportamento global de todos o
 
 ```tsx
 <ToastContainer
-  theme="light" // 'light' | 'dark' (padrão: 'dark')
-  position="top-right" // top-right | top-left | top-center | bottom-right | bottom-left | bottom-center (padrão: 'bottom-right')
-  duration={3000} // tempo em ms que o toast permanece na tela (padrão: 3000)
-  draggable // permite arrastar o toast para dispensar (padrão: false)
-  closeOnClick // exibe o botão de fechar (padrão: true)
-  maxStacks={3} // máximo de toasts visíveis ao mesmo tempo (padrão: sem limite)
+  theme="light"
+  position="top-right"
+  duration={3000}
+  draggable
+  closeOnClick
+  maxStacks={3}
 />
 ```
 
