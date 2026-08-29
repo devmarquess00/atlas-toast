@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { Container } from "./components/Container";
 import { ToastContainer } from "atlas-toast";
+import "atlas-toast/style.css";
 import type { ToastContainerProps } from "atlas-toast";
 
 function App() {

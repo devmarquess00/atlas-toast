@@ -24,15 +24,16 @@ pnpm add atlas-toast
 - Limite de pilha (`maxStacks`): controle o máximo de toasts visíveis ao mesmo tempo.
 - Suporte a temas: alternância nativa entre `light` e `dark`.
 - Toast de promise: loading animado que vira sucesso ou erro automaticamente.
-- Sem customização externa necessária: o CSS é importado automaticamente.
+- CSS mínimo: basta um import do estilo para tudo funcionar.
 - Totalmente tipado: criado do zero com TypeScript.
 
 ## 🚩 Uso básico
 
-Para que os toasts sejam exibidos, é preciso renderizar o componente `ToastContainer` na sua aplicação (geralmente no nível raiz). O CSS já é importado automaticamente, então não precisa configurar nada a mais.
+Para que os toasts sejam exibidos, é preciso renderizar o componente `ToastContainer` na sua aplicação (geralmente no nível raiz) e importar o CSS da biblioteca:
 
 ```tsx
 import { ToastContainer, toast } from "atlas-toast";
+import "atlas-toast/style.css";
 
 const App = () => {
   const showToastSuccess = () => {
@@ -106,6 +107,7 @@ O `toast.promise` mostra um loading animado enquanto a promise está pendente e,
 
 ```tsx
 import { toast } from "atlas-toast";
+import "atlas-toast/style.css";
 
 const fetchData = async () => {
   const response = await fetch("url");
@@ -141,6 +143,7 @@ const showToastPromise = async () => {
 
 ```tsx
 import { ToastContainer, toast } from "atlas-toast";
+import "atlas-toast/style.css";
 
 const App = () => {
   return (
