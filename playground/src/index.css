@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Poppins', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+}
+
+:root,
+[data-theme="dark"] {
+  --bg: #141111;
+  --bg-surface: #211E1E;
+  --bg-code: #1a1717;
+  --border: #302d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a1;
+}
+
+[data-theme="light"] {
+  --bg: #f5f5f5;
+  --bg-surface: #ffffff;
+  --bg-code: #f0f0f0;
+  --border: #e5e5e5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+}
+
+body, html {
+  background-color: var(--bg);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+
+.card__code {
+  background-color: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  color: var(--text-primary);
+}
+
+.card__muted {
+  color: var(--text-secondary);
+}
