@@ -38,7 +38,7 @@ export const VARIANTS = [
     title: "Warning",
     icon: <LuTriangleAlert />,
     color: "#f59e0b",
-    subtitle: "Avisa sobre um risco antes que vire problema.",
+    subtitle: "Alerta sobre riscos.",
     usage: "Avisar sobre ações que exigem atenção do usuário.",
     code: `toast.warning({
   title: "Atenção",

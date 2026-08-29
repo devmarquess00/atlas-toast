@@ -1,19 +1,44 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Container } from "./components/Container";
+import { ToastContainer } from "../../src";
+import type { ToastContainerProps } from "../../src";
 
 function App() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [settings, setSettings] = useState<ToastContainerProps>({
+    theme: "dark",
+    position: "bottom-right",
+    duration: 3000,
+    draggable: true,
+    closeOnClick: true,
+    maxStacks: 3,
+  });
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+    document.documentElement.setAttribute(
+      "data-theme",
+      settings.theme ?? "dark",
+    );
+  }, [settings.theme]);
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-  };
+  const updateSettings = (patch: Partial<ToastContainerProps>) =>
+    setSettings((previous) => ({ ...previous, ...patch }));
 
-  return <Container theme={theme} onToggleTheme={toggleTheme} />;
+  const toggleTheme = () =>
+    updateSettings({
+      theme: settings.theme === "dark" ? "light" : "dark",
+    });
+
+  return (
+    <>
+      <Container
+        settings={settings}
+        updateSettings={updateSettings}
+        onToggleTheme={toggleTheme}
+      />
+      <ToastContainer {...settings} />
+    </>
+  );
 }
 
 export default App;

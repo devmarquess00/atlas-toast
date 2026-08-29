@@ -13,8 +13,11 @@ const Header = ({ theme, onToggleTheme }: HeaderProps) => {
       <h1 className="text-3xl font-semibold">Atlas Toast Playground</h1>
       <button
         onClick={onToggleTheme}
-        className="flex items-center gap-x-2 px-4 py-3 rounded-xl border text-(--text-primary) cursor-pointer"
-        style={{ backgroundColor: "var(--bg-surface)", borderColor: "var(--border)" }}
+        className="flex items-center gap-x-2 px-4 py-3 rounded-xl border text-(--text-primary) cursor-pointer outline-none"
+        style={{
+          backgroundColor: "var(--bg-surface)",
+          borderColor: "var(--border)",
+        }}
       >
         {isDark ? <LuSun /> : <LuMoon />}
         <span className="text-sm">{isDark ? "Tema Claro" : "Tema Escuro"}</span>

@@ -1,18 +1,26 @@
 import { Header } from "../Header";
 import { Variants } from "../Variants";
+import { Controls } from "../Controls";
+import type { ToastContainerProps } from "../../../../src";
 
 type ContainerProps = {
-  theme: "light" | "dark";
+  settings: ToastContainerProps;
+  updateSettings: (patch: Partial<ToastContainerProps>) => void;
   onToggleTheme: () => void;
 };
 
-const Container = ({ theme, onToggleTheme }: ContainerProps) => {
+const Container = ({
+  settings,
+  updateSettings,
+  onToggleTheme,
+}: ContainerProps) => {
   return (
     <div
-      data-theme={theme}
-      className="mx-auto 2xl:max-w-5xl 2xl:py-10"
+      data-theme={settings.theme}
+      className="mx-auto lg:max-w-4xl 2xl:max-w-5xl py-10"
     >
-      <Header theme={theme} onToggleTheme={onToggleTheme} />
+      <Header theme={settings.theme ?? "dark"} onToggleTheme={onToggleTheme} />
+      <Controls settings={settings} updateSettings={updateSettings} />
       <Variants />
     </div>
   );

@@ -2,11 +2,25 @@ import { toast } from "../../../../src/toast";
 import { LuCopy } from "react-icons/lu";
 import { VARIANTS } from "../../constants/variants";
 
+const TOAST_BY_TYPE: Record<
+  (typeof VARIANTS)[number]["type"],
+  typeof toast.success
+> = {
+  Success: toast.success,
+  Error: toast.error,
+  Warning: toast.warning,
+  Info: toast.info,
+};
+
 const Variants = () => {
   const copyCodeToast = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-    } catch (err: any) {
+      toast.success(
+        "Copiado com sucesso",
+        "Verifique sua área de transferencia",
+      );
+    } catch {
       toast.error("Erro ao copiar", "Tente novamente mais tarde");
     }
   };
@@ -43,7 +57,15 @@ const Variants = () => {
                 </div>
               </div>
 
-              <button className="px-4 py-2 rounded-lg text-sm font-medium bg-[#4238ff] text-white cursor-pointer outline-none">
+              <button
+                onClick={() =>
+                  TOAST_BY_TYPE[variant.type](
+                    `Toast de ${variant.title}`,
+                    `Exemplo real da variante ${variant.title.toLowerCase()}.`,
+                  )
+                }
+                className="px-4 py-2 rounded-lg text-sm font-medium bg-[#4238ff] text-white cursor-pointer outline-none"
+              >
                 Disparar
               </button>
             </header>
