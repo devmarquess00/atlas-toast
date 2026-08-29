@@ -165,3 +165,11 @@ const App = () => {
   );
 };
 ```
+
+## 👤 Autor
+
+Desenvolvido e mantido por [Joao Lucas Marques](https://github.com/devmarquess00).
+
+- **GitHub:** [@devmarquess00](https://github.com/devmarquess00)
+
+Distribuído sob a licença [MIT](LICENSE).

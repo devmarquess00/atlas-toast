@@ -109,7 +109,7 @@ const Controls = ({ settings, updateSettings }: ControlsProps) => {
 
   return (
     <form
-      className="card mt-8 overflow-hidden py-6 px-8"
+      className="card mt-8 overflow-hidden px-5 py-6 md:py-6 md:px-8"
       onSubmit={(event) => event.preventDefault()}
     >
       <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">

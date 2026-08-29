@@ -36,9 +36,9 @@ const Variants = () => {
         </span>
       </header>
 
-      <main className="grid grid-cols-2 gap-4">
+      <main className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {VARIANTS.map((variant) => (
-          <div key={variant.type} className="card overflow-hidden p-6">
+          <div key={variant.type} className="card overflow-hidden p-4 md:p-6">
             <header className="flex items-center justify-between">
               <div className="flex items-center gap-x-3">
                 <div
@@ -91,7 +91,7 @@ const Variants = () => {
                 <span className="text-sm font-medium">exemplo</span>
 
                 <button
-                  className="flex items-center gap-x-1.5 text-sm card__muted"
+                  className="flex items-center gap-x-1.5 text-sm card__muted cursor-pointer"
                   onClick={() => copyCodeToast(variant.code)}
                 >
                   <LuCopy />

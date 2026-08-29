@@ -10,7 +10,7 @@ const Header = ({ theme, onToggleTheme }: HeaderProps) => {
 
   return (
     <div className="flex items-center justify-between text-(--text-primary)">
-      <h1 className="text-3xl font-semibold">Atlas Toast Playground</h1>
+      <h1 className="text-2xl md:text-3xl font-semibold">Atlas Toast Playground</h1>
       <button
         onClick={onToggleTheme}
         className="flex items-center gap-x-2 px-4 py-3 rounded-xl border text-(--text-primary) cursor-pointer outline-none"
@@ -20,7 +20,7 @@ const Header = ({ theme, onToggleTheme }: HeaderProps) => {
         }}
       >
         {isDark ? <LuSun /> : <LuMoon />}
-        <span className="text-sm">{isDark ? "Tema Claro" : "Tema Escuro"}</span>
+        <span className="hidden md:flex text-sm">{isDark ? "Tema Claro" : "Tema Escuro"}</span>
       </button>
     </div>
   );

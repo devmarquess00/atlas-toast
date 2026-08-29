@@ -2,6 +2,7 @@
   "name": "atlas-toast",
   "version": "1.0.8",
   "private": false,
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

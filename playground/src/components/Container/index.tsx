@@ -17,7 +17,7 @@ const Container = ({
   return (
     <div
       data-theme={settings.theme}
-      className="mx-auto lg:max-w-4xl 2xl:max-w-5xl py-10"
+      className="px-6 mx-auto md:max-w-xl lg:px-0 lg:max-w-4xl 2xl:max-w-5xl py-10"
     >
       <Header theme={settings.theme ?? "dark"} onToggleTheme={onToggleTheme} />
       <Controls settings={settings} updateSettings={updateSettings} />
