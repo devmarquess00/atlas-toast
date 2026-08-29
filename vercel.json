@@ -1,3 +1,4 @@
 {
-  "rootDirectory": "playground"
+  "framework": "vite",
+  "outputDirectory": "dist"
 }
