@@ -28,7 +28,7 @@ export const useToastStore = create<ToastStore>((set) => ({
     type = "warning",
     statusToast = "resolved",
   ) => {
-    const id = Math.random().toString(36).substring(2, 9);
+    const id = crypto.randomUUID();
     const creatingToast =
       type === "promise"
         ? {
@@ -84,7 +84,6 @@ export const useToastStore = create<ToastStore>((set) => ({
   },
 
   removeToast: (id) => {
-    console.log("chegou aqui");
     return set((state) => ({
       toasts: state.toasts.filter((t) => t.id !== id),
     }));

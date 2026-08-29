@@ -23,21 +23,50 @@ pnpm add atlas-toast
 - Suporte a Temas: Alternância nativa entre temas `light` e `dark`.
 - Totalmente Tipado: Criado do zero com TypeScript
 
-## 🚩 Uso básico 
-#### Exemplo 1 - Toast de Sucesso
+## 🚩 Uso básico
+
+Para que os toasts sejam exibidos, é preciso renderizar o componente `ToastContainer` na sua aplicação (geralmente no nível raiz). O CSS já é importado automaticamente por ele, então não precisa configurar nada a mais.
 
 ```tsx
-import { toast } from 'atlas-toast'
+import { ToastContainer, toast } from 'atlas-toast'
 
-const App () {
+const App = () => {
   const showToastSuccess = () => {
-    toast.success("Toast de sucesso", "Descrição toast de sucesso"
+    toast.success("Toast de sucesso", "Descrição toast de sucesso")
   }
 
   return (
     <div>
       <button onClick={showToastSuccess}>Mostrar Toast</button>
+
+      <ToastContainer />
     </div>
   )
 }
+```
+
+## ⚙️ Configurando o ToastContainer
+
+O `ToastContainer` aceita algumas props para controlar o comportamento global dos toasts:
+
+```tsx
+<ToastContainer
+  theme="light"        // 'light' | 'dark'
+  position="top-right" // top-right, top-left, top-center, bottom-right, bottom-left, bottom-center
+  duration={3000}      // tempo em ms que o toast permanece na tela
+  draggable            // arrastar o toast para fechar
+  closeOnClick         // mostra botão de fechar
+/>
+```
+
+## 🎨 Outros tipos de toast
+
+```tsx
+toast.success("Título", "Descrição")
+toast.info("Título", "Descrição")
+toast.warning("Título", "Descrição")
+toast.error("Título", "Descrição")
+
+// Toast de promise (loading -> sucesso/erro)
+const result = await toast.promise(fetchData)
 ```
