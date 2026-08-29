@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useToastStore, type ToastStoreProps } from "../stores/useToastStore";
+import type { ToastStoreProps } from "../types";
+import { useToastStore } from "../stores/useToastStore";
 
 type useToastProps = {
   toast: ToastStoreProps;

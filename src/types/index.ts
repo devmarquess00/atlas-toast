@@ -12,6 +12,7 @@ export type ToastContainerProps = {
   duration?: number;
   draggable?: boolean
   closeOnClick?: boolean
+  maxStacks?: number;
 };
 
 export interface ToastStoreProps {

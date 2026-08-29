@@ -1,4 +1,5 @@
-import { Toast, type ToastProps } from "./Toast";
+import { Toast } from "./Toast";
+import type { ToastProps } from "../types";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const defaultToast: ToastProps["toast"] = {

@@ -31,23 +31,29 @@ export const toast = {
 
     try {
       const result = await data();
-      updatedToast(
-        id,
-        options?.resolvedTitle ?? "Sucesso!",
-        options?.resolvedDescription ?? "Chamada resolvida com sucesso!",
-        "promise",
-        "resolved",
-      );
+
+      if (id != null) {
+        updatedToast(
+          id,
+          options?.resolvedTitle ?? "Sucesso!",
+          options?.resolvedDescription ?? "Chamada resolvida com sucesso!",
+          "promise",
+          "resolved",
+        );
+      }
 
       return result;
     } catch (err) {
-      updatedToast(
-        id,
-        options?.errorTitle ?? "Erro!",
-        options?.errorDescription ?? "Erro ao processar a chamada!",
-        "promise",
-        "error",
-      );
+      if (id != null) {
+        updatedToast(
+          id,
+          options?.errorTitle ?? "Erro!",
+          options?.errorDescription ?? "Erro ao processar a chamada!",
+          "promise",
+          "error",
+        );
+      }
+
       throw err;
     }
   },

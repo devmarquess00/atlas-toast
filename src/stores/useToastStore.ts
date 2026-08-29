@@ -1,14 +1,16 @@
 import { create } from "zustand";
-import { ToastStoreProps } from "../types";
+import type { ToastStoreProps } from "../types";
 
 interface ToastStore {
   toasts: ToastStoreProps[];
+  maxStacks: number;
+  setMaxStacks: (maxStacks: number) => void;
   addToast: (
     title: string,
     description?: string,
     type?: ToastStoreProps["type"],
     statusToast?: ToastStoreProps["statusToast"],
-  ) => string;
+  ) => string | null;
   updatedToast: (
     id: string,
     title: string,
@@ -20,14 +22,19 @@ interface ToastStore {
   setToastIsExisting: (id: string) => void;
 }
 
-export const useToastStore = create<ToastStore>((set) => ({
+export const useToastStore = create<ToastStore>((set, get) => ({
   toasts: [],
+  maxStacks: Infinity,
+  setMaxStacks: (maxStacks) => set({ maxStacks }),
   addToast: (
     title,
     description,
     type = "warning",
     statusToast = "resolved",
   ) => {
+    const { toasts, maxStacks } = get();
+    if (toasts.length >= maxStacks) return null;
+
     const id = crypto.randomUUID();
     const creatingToast =
       type === "promise"
